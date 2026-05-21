@@ -18,7 +18,7 @@ API REST construida con **Node.js + Express + PostgreSQL** que gestiona autores,
 
 ```bash
 # 1. Clonar el repositorio
-git clone https://github.com/tu-usuario/proyecto-integrador-2.git
+git clone https://github.com/tu-usuario/Api-MiniBlog.git
 cd proyecto-integrador-2
 
 # 2. Instalar dependencias
@@ -174,24 +174,3 @@ proyecto-integrador-2/
 
 ---
 
-## Decisiones técnicas
-
-- **`pg.Pool`** sobre `pg.Client`: el pool reutiliza conexiones y maneja reconexiones automáticamente.
-- **Consultas parametrizadas** (`$1, $2`): previenen SQL injection en todos los servicios.
-- **Separación routes/services**: las rutas solo validan y delegan; los services contienen únicamente lógica SQL.
-- **`app.js` vs `server.js`**: separar la app del listener permite que supertest inyecte la app sin abrir un puerto real.
-- **CASCADE en FK**: al borrar un author se eliminan automáticamente sus posts y comentarios; al borrar un post, sus comentarios.
-- **`/posts/author/:authorId` antes de `/posts/:id`**: evita que Express interprete "author" como un ID numérico.
-
----
-
-## Prompts de IA utilizados
-
-Durante el desarrollo se usó IA como apoyo para:
-
-1. **Estructura inicial del proyecto**: *"Genera la estructura de carpetas para una API REST Node.js + Express con PostgreSQL siguiendo la separación routes/services/db."*
-2. **Consulta SQL con JOIN**: *"Escribe una query PostgreSQL parametrizada que devuelva posts con los datos del autor usando json_build_object."*
-3. **Configuración de Jest con mocks**: *"¿Cómo mockeo un módulo de pool de pg en Jest para que los tests no necesiten una base de datos real?"*
-4. **OpenAPI YAML**: *"Genera la spec OpenAPI 3.0 para estos endpoints con sus schemas de request y response."*
-
-En todos los casos se revisó y adaptó el output al contexto del proyecto.
