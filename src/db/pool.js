@@ -1,17 +1,11 @@
-// src/db/pool.js
-// Conexión centralizada a PostgreSQL usando pg.Pool
-// Se reutiliza a lo largo de toda la aplicación.
-
 require('dotenv').config();
 const { Pool } = require('pg');
 
-// Si existe DATABASE_URL (Railway) se usa directamente;
-// si no, se construye desde variables individuales.
 const pool = new Pool(
   process.env.DATABASE_URL
     ? {
         connectionString: process.env.DATABASE_URL,
-        ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+        ssl: { rejectUnauthorized: false },
       }
     : {
         host:     process.env.DB_HOST     || 'localhost',
