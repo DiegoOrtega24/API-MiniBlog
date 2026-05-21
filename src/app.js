@@ -1,10 +1,8 @@
 // src/app.js
-// Configuración de la aplicación Express.
-// Se exporta (sin escuchar) para poder importarla en los tests con supertest.
-
 require('dotenv').config();
 
 const express      = require('express');
+const cors         = require('cors');
 const YAML         = require('yamljs');
 const swaggerUi    = require('swagger-ui-express');
 const path         = require('path');
@@ -17,6 +15,7 @@ const errorHandler   = require('./middlewares/errorHandler');
 const app = express();
 
 // ── Middlewares globales ──────────────────────────────────────
+app.use(cors());
 app.use(express.json());
 
 // ── Documentación OpenAPI ─────────────────────────────────────
