@@ -18,6 +18,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.json({
+    message: "MiniBlog API running"
+  });
+});
+
 // ── Documentación OpenAPI ─────────────────────────────────────
 const swaggerDocument = YAML.load(path.join(__dirname, '..', 'docs', 'openapi.yaml'));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
