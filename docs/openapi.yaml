@@ -15,7 +15,7 @@ info:
 servers:
   - url: http://localhost:3000
     description: Servidor local
-  - url: https://tu-app.up.railway.app
+  - url: https://api-miniblog-production.up.railway.app
     description: Producción (Railway)
 
 tags:
